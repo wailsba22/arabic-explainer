@@ -194,7 +194,7 @@ function addScrollToTopButton() {
     });
 }
 
-// Optionally enable scroll to top button
+// Scroll to top button is disabled by default. Uncomment to enable:
 // addScrollToTopButton();
 
 // ===================================
@@ -221,5 +221,5 @@ function initScrollAnimations() {
     animatedElements.forEach(el => observer.observe(el));
 }
 
-// Enable scroll animations if desired
+// Scroll animations are disabled by default for better performance. Uncomment to enable:
 // initScrollAnimations();
