@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arabic Code Explainer</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/theme/monokai.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/php/php.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/ruby/ruby.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/go/go.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/rust/rust.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/swift/swift.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/css/css.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/sql/sql.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.2/mode/shell/shell.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <h1 class="logo">Arabic Code Explainer</h1>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="hero">
+            <h2>Learn what your code means in Arabic and how it works</h2>
+            <p>Paste your code below and get instant explanations in Arabic</p>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="code-section">
+                <h2>Enter Your Code</h2>
+                <textarea id="code-box" placeholder="Paste your code here..."></textarea>
+            </div>
+            <div class="controls">
+                <div class="language-selector">
+                    <label for="lang-select">Select Programming Language:</label>
+                    <select id="lang-select">
+                        <option value="python">Python</option>
+                        <option value="javascript">JavaScript</option>
+                        <option value="java">Java</option>
+                        <option value="cpp">C++</option>
+                        <option value="csharp">C#</option>
+                        <option value="php">PHP</option>
+                        <option value="ruby">Ruby</option>
+                        <option value="go">Go</option>
+                        <option value="rust">Rust</option>
+                        <option value="swift">Swift</option>
+                        <option value="kotlin">Kotlin</option>
+                        <option value="typescript">TypeScript</option>
+                        <option value="html">HTML</option>
+                        <option value="css">CSS</option>
+                        <option value="sql">SQL</option>
+                        <option value="bash">Bash</option>
+                    </select>
+                </div>
+                <button id="explain-btn" class="explain-btn">Explain</button>
+            </div>
+            <div id="explanation-output" class="output">
+                <h3>Explanation</h3>
+                <p>Your explanation will appear here in Arabic.</p>
+            </div>
+        </div>
+        <section class="features">
+            <div class="container">
+                <h2>Why Choose Arabic Code Explainer?</h2>
+                <div class="features-grid">
+                    <div class="feature">
+                        <h3>Arabic Explanations</h3>
+                        <p>Get detailed code explanations in Arabic, making learning programming concepts easier for Arabic speakers.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Multiple Languages</h3>
+                        <p>Support for popular programming languages including Python, JavaScript, Java, C++, and more.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Instant Results</h3>
+                        <p>Paste your code and get explanations immediately without any setup or installation required.</p>
+                    </div>
+                    <div class="feature">
+                        <h3>Free & Accessible</h3>
+                        <p>Completely free to use with no registration required. Available online anytime.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Arabic Code Explainer. Made for Arabs to understand code.</p>
+    </footer>
+    <script src="js/script.js"></script>
+</body>
+</html>
