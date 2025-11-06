@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Arabic Explainer - Learn code in Arabic. A project to help Arabs understand programming concepts in their native language.">
+    <meta name="keywords" content="Arabic, Programming, Code, Learning, Education, شرح البرمجة بالعربية">
+    <meta name="author" content="Arabic Explainer">
+    <title>Arabic Explainer - Learn Code in Arabic | شرح البرمجة بالعربية</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    
+    <!-- Google Fonts for better Arabic support -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="logo">
+                    <h1>Arabic Explainer</h1>
+                    <span class="logo-arabic">شرح البرمجة بالعربية</span>
+                </div>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="active">Home / الرئيسية</a></li>
+                    <li><a href="about.html">About / عن المشروع</a></li>
+                    <li><a href="#features">Features / المميزات</a></li>
+                    <li><a href="#contact">Contact / اتصل بنا</a></li>
+                </ul>
+                <button class="language-toggle" id="languageToggle">
+                    <span class="lang-en">عربي</span>
+                    <span class="lang-ar" style="display: none;">English</span>
+                </button>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="lang-en">Learn Code in Arabic</span>
+                    <span class="lang-ar" style="display: none;">تعلم البرمجة بالعربية</span>
+                </h1>
+                <p class="hero-description">
+                    <span class="lang-en">
+                        A project to help Arabic speakers understand programming concepts and code in their native language.
+                    </span>
+                    <span class="lang-ar" style="display: none;">
+                        مشروع لمساعدة المتحدثين بالعربية على فهم مفاهيم البرمجة والكود بلغتهم الأم.
+                    </span>
+                </p>
+                <div class="hero-buttons">
+                    <a href="#get-started" class="btn btn-primary">
+                        <span class="lang-en">Get Started</span>
+                        <span class="lang-ar" style="display: none;">ابدأ الآن</span>
+                    </a>
+                    <a href="about.html" class="btn btn-secondary">
+                        <span class="lang-en">Learn More</span>
+                        <span class="lang-ar" style="display: none;">اعرف المزيد</span>
+                    </a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="code-illustration">
+                    <pre><code>// Hello World
+console.log("مرحبا بالعالم");
+
+// شرح: هذا الكود يطبع
+// "مرحبا بالعالم" على الشاشة</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="lang-en">Features</span>
+                <span class="lang-ar" style="display: none;">المميزات</span>
+            </h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🌐</div>
+                    <h3>
+                        <span class="lang-en">Bilingual Support</span>
+                        <span class="lang-ar" style="display: none;">دعم ثنائي اللغة</span>
+                    </h3>
+                    <p>
+                        <span class="lang-en">Learn programming with explanations in both English and Arabic</span>
+                        <span class="lang-ar" style="display: none;">تعلم البرمجة مع شروحات بالإنجليزية والعربية</span>
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>
+                        <span class="lang-en">Clear Explanations</span>
+                        <span class="lang-ar" style="display: none;">شروحات واضحة</span>
+                    </h3>
+                    <p>
+                        <span class="lang-en">Understand code with detailed Arabic explanations</span>
+                        <span class="lang-ar" style="display: none;">افهم الكود بشروحات عربية مفصلة</span>
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💡</div>
+                    <h3>
+                        <span class="lang-en">Interactive Learning</span>
+                        <span class="lang-ar" style="display: none;">تعلم تفاعلي</span>
+                    </h3>
+                    <p>
+                        <span class="lang-en">Practice coding concepts with interactive examples</span>
+                        <span class="lang-ar" style="display: none;">مارس مفاهيم البرمجة بأمثلة تفاعلية</span>
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>
+                        <span class="lang-en">For Arabs</span>
+                        <span class="lang-ar" style="display: none;">للعرب</span>
+                    </h3>
+                    <p>
+                        <span class="lang-en">Designed specifically for Arabic speakers learning to code</span>
+                        <span class="lang-ar" style="display: none;">مصمم خصيصاً للمتحدثين بالعربية لتعلم البرمجة</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Started Section -->
+    <section id="get-started" class="get-started">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="lang-en">Get Started</span>
+                <span class="lang-ar" style="display: none;">ابدأ الآن</span>
+            </h2>
+            <div class="code-example">
+                <div class="code-header">
+                    <span class="lang-en">Example: Variables in JavaScript</span>
+                    <span class="lang-ar" style="display: none;">مثال: المتغيرات في جافاسكريبت</span>
+                </div>
+                <div class="code-body">
+                    <pre><code>// المتغيرات (Variables)
+let name = "Ahmed";
+const age = 25;
+var city = "Cairo";
+
+// الشرح:
+// let: متغير يمكن تغيير قيمته
+// const: ثابت لا يمكن تغيير قيمته
+// var: طريقة قديمة للمتغيرات</code></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title">
+                <span class="lang-en">Contact Us</span>
+                <span class="lang-ar" style="display: none;">اتصل بنا</span>
+            </h2>
+            <p class="contact-description">
+                <span class="lang-en">Have questions or suggestions? We'd love to hear from you!</span>
+                <span class="lang-ar" style="display: none;">لديك أسئلة أو اقتراحات؟ نحب أن نسمع منك!</span>
+            </p>
+            <div class="contact-info">
+                <a href="https://github.com/wailsba22/arabic-explainer" class="contact-link" target="_blank">
+                    <span class="lang-en">Visit our GitHub Repository</span>
+                    <span class="lang-ar" style="display: none;">زر مستودع GitHub الخاص بنا</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>
+                <span class="lang-en">&copy; 2024 Arabic Explainer. Made with ❤️ for the Arab developer community.</span>
+                <span class="lang-ar" style="display: none;">© 2024 شرح البرمجة بالعربية. صُنع بـ ❤️ لمجتمع المطورين العرب.</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+</html>
