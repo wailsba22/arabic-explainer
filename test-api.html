@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Test - Arabic Explainer</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #667eea;
+        }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 14px;
+        }
+        .success { color: #28a745; }
+        .error { color: #dc3545; }
+        .info { color: #007bff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 API Debug Tool</h1>
+        <p>Click the button to test if the API is working:</p>
+        
+        <button onclick="testAPI()">Test API</button>
+        <button onclick="checkKeys()">Check API Keys</button>
+        <button onclick="testGemini()">Test Gemini Directly</button>
+        
+        <div id="output">Logs will appear here...</div>
+    </div>
+
+    <script>
+        const output = document.getElementById('output');
+        
+        function log(message, type = 'info') {
+            const timestamp = new Date().toLocaleTimeString();
+            const className = type;
+            output.innerHTML += `<span class="${className}">[${timestamp}] ${message}</span>\n`;
+        }
+        
+        async function testAPI() {
+            output.innerHTML = '';
+            log('🚀 Testing serverless API...', 'info');
+            
+            const testCode = 'print("Hello World")';
+            const testLang = 'Python';
+            
+            try {
+                const response = await fetch('/api/explain', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        code: testCode,
+                        language: testLang
+                    })
+                });
+                
+                log(`Response status: ${response.status}`, 'info');
+                
+                const data = await response.json();
+                log('Response data:', 'info');
+                log(JSON.stringify(data, null, 2), 'info');
+                
+                if (data.explanation) {
+                    log('✅ SUCCESS! Got explanation:', 'success');
+                    log(data.explanation.substring(0, 200) + '...', 'success');
+                } else if (data.fallback) {
+                    log('⚠️ Using fallback (no API key configured)', 'error');
+                } else {
+                    log('❌ No explanation received', 'error');
+                }
+                
+            } catch (error) {
+                log('❌ ERROR: ' + error.message, 'error');
+            }
+        }
+        
+        async function checkKeys() {
+            output.innerHTML = '';
+            log('🔍 Checking API configuration...', 'info');
+            log('Note: This will show in Vercel function logs, not here', 'info');
+            log('Go to: Vercel Dashboard → Deployments → Functions → /api/explain', 'info');
+            await testAPI();
+        }
+        
+        async function testGemini() {
+            output.innerHTML = '';
+            log('⚠️ Testing Gemini requires API key in environment variables', 'info');
+            log('This test will show results in Vercel function logs', 'info');
+            log('', 'info');
+            log('To enable Gemini:', 'info');
+            log('1. Get key: https://aistudio.google.com/app/apikey', 'info');
+            log('2. Add to Vercel: Settings → Environment Variables', 'info');
+            log('3. Name: GEMINI_API_KEY', 'info');
+            log('4. Redeploy', 'info');
+            log('', 'info');
+            await testAPI();
+        }
+    </script>
+</body>
+</html>
