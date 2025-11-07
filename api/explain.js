@@ -38,13 +38,19 @@ ${code}
         const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyDAqPqw7FPQZBeLQRySwbe8iPEjbjQUc4c';
         const HF_API_KEY = process.env.HF_API_KEY;
         
+        // FORCE LOG TO SEE WHAT'S HAPPENING
+        console.log('========================================');
+        console.log('API EXPLAIN FUNCTION CALLED');
+        console.log('========================================');
         console.log('🔍 Debug info:');
         console.log('- GEMINI_API_KEY exists:', !!GEMINI_API_KEY);
         console.log('- GEMINI_API_KEY length:', GEMINI_API_KEY ? GEMINI_API_KEY.length : 0);
-        console.log('- GEMINI_API_KEY starts with:', GEMINI_API_KEY ? GEMINI_API_KEY.substring(0, 10) + '...' : 'N/A');
+        console.log('- GEMINI_API_KEY first 15 chars:', GEMINI_API_KEY ? GEMINI_API_KEY.substring(0, 15) + '...' : 'N/A');
         console.log('- HF_API_KEY exists:', !!HF_API_KEY);
         console.log('- Code length:', code.length);
         console.log('- Language:', language);
+        console.log('- Code sample:', code.substring(0, 50));
+        console.log('========================================');
         
         // Try Google Gemini first (fastest and best for Arabic!)
         if (GEMINI_API_KEY) {
