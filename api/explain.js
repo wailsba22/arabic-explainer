@@ -33,8 +33,9 @@ ${code}
 
 اشرح ما يفعله الكود، كيف يعمل، والمفاهيم المهمة. الشرح بالعربية:`;
 
-        // Get API keys from environment variables
-        const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
+        // Get API keys - TEMPORARY: Hardcoded for testing
+        // TODO: Move to environment variables before pushing to GitHub!
+        const GEMINI_API_KEY = process.env.GEMINI_API_KEY || 'AIzaSyDAqPqw7FPQZBeLQRySwbe8iPEjbjQUc4c';
         const HF_API_KEY = process.env.HF_API_KEY;
         
         console.log('🔍 Debug info:');
