@@ -40,6 +40,8 @@ ${code}
         
         console.log('🔍 Debug info:');
         console.log('- GEMINI_API_KEY exists:', !!GEMINI_API_KEY);
+        console.log('- GEMINI_API_KEY length:', GEMINI_API_KEY ? GEMINI_API_KEY.length : 0);
+        console.log('- GEMINI_API_KEY starts with:', GEMINI_API_KEY ? GEMINI_API_KEY.substring(0, 10) + '...' : 'N/A');
         console.log('- HF_API_KEY exists:', !!HF_API_KEY);
         console.log('- Code length:', code.length);
         console.log('- Language:', language);
@@ -95,6 +97,18 @@ ${code}
                     const errorText = await response.text();
                     console.log('❌ Gemini failed with status:', response.status);
                     console.log('Error response:', errorText);
+                    
+                    // Try to parse error
+                    try {
+                        const errorJson = JSON.parse(errorText);
+                        console.log('Parsed error:', JSON.stringify(errorJson, null, 2));
+                        
+                        if (errorJson.error?.message) {
+                            console.log('Error message:', errorJson.error.message);
+                        }
+                    } catch (e) {
+                        console.log('Could not parse error as JSON');
+                    }
                 }
             } catch (error) {
                 console.error('Gemini error:', error.message);
