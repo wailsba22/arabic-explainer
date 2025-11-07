@@ -1,0 +1,15 @@
+{
+  "name": "arabic-explainer",
+  "version": "1.0.0",
+  "description": "AI-powered code explainer in Arabic",
+  "type": "module",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'No build step required'"
+  },
+  "keywords": ["arabic", "code", "explainer", "ai"],
+  "author": "wailsba22",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}
