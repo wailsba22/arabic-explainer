@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 ? 'http://localhost:3000/api/explain'  // Local development
                 : '/api/explain';  // Production (Vercel)
             
-            console.log('Calling serverless API...');
+            console.log('🚀 Calling serverless API...');
             
             const response = await fetch(API_URL, {
                 method: 'POST',
@@ -79,10 +79,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
             if (response.ok) {
                 const data = await response.json();
-                console.log('✅ AI explanation received!');
-                return data.explanation;
+                
+                // Check if we got a real AI explanation
+                if (data.explanation && data.explanation.trim().length > 20) {
+                    console.log(`✅ AI explanation received from ${data.model || 'API'}!`);
+                    return data.explanation;
+                }
+                
+                // If fallback flag is set, use local analyzer
+                if (data.fallback) {
+                    console.log('⚠️ API returned fallback flag, using local analysis...');
+                    console.log('Message:', data.message);
+                }
             } else {
-                console.log('API failed, using local analysis...');
+                console.log('API request failed with status:', response.status);
             }
             
         } catch (error) {
@@ -90,6 +100,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         
         // Fallback to smart local analysis
+        console.log('📊 Using smart local code analyzer...');
         return generateSmartExplanation(code, language);
     }
 

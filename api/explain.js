@@ -36,19 +36,27 @@ ${code}
         const HF_API_KEY = process.env.HF_API_KEY;
         
         if (!HF_API_KEY) {
-            console.error('HF_API_KEY not found in environment variables');
-            return res.status(503).json({ 
-                error: 'AI service not configured. Please add HF_API_KEY to environment variables.' 
+            console.error('⚠️ HF_API_KEY not found in environment variables');
+            console.log('Please add HF_API_KEY in Vercel Project Settings → Environment Variables');
+            console.log('Get free key from: https://huggingface.co/settings/tokens');
+            // Return empty to trigger frontend fallback
+            return res.status(200).json({ 
+                explanation: null,
+                fallback: true,
+                message: 'API key not configured - using local analysis'
             });
         }
         
         const models = [
             'mistralai/Mixtral-8x7B-Instruct-v0.1',
-            'meta-llama/Llama-2-7b-chat-hf'
+            'meta-llama/Llama-2-7b-chat-hf',
+            'google/flan-t5-xxl'
         ];
 
         for (const model of models) {
             try {
+                console.log(`🤖 Trying ${model}...`);
+                
                 const response = await fetch(
                     `https://api-inference.huggingface.co/models/${model}`,
                     {
@@ -70,6 +78,7 @@ ${code}
 
                 if (response.ok) {
                     const data = await response.json();
+                    console.log(`✅ Success with ${model}`);
                     
                     let explanation = null;
                     if (Array.isArray(data) && data[0]?.generated_text) {
@@ -78,21 +87,27 @@ ${code}
                         explanation = data.generated_text;
                     }
 
-                    if (explanation) {
+                    if (explanation && explanation.trim().length > 20) {
                         return res.status(200).json({ 
                             explanation,
                             model: model 
                         });
                     }
+                } else {
+                    const errorData = await response.json();
+                    console.log(`❌ ${model} failed:`, errorData);
                 }
             } catch (error) {
-                console.error(`Error with ${model}:`, error);
+                console.error(`Error with ${model}:`, error.message);
             }
         }
 
-        // If all fail, return error
-        return res.status(503).json({ 
-            error: 'جميع نماذج AI غير متاحة حالياً. جرب مرة أخرى لاحقاً.' 
+        // All models failed - trigger frontend fallback
+        console.log('⚠️ All AI models failed, using frontend fallback');
+        return res.status(200).json({ 
+            explanation: null,
+            fallback: true,
+            message: 'AI models busy - using local analysis'
         });
 
     } catch (error) {
