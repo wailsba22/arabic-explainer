@@ -83,7 +83,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Check if we got a real AI explanation
                 if (data.explanation && data.explanation.trim().length > 20) {
                     console.log(`✅ AI explanation received from ${data.model || 'API'}!`);
-                    return data.explanation;
+                    
+                    // Display with model info
+                    if (data.isAI) {
+                        // Already has AI header from backend
+                        return data.explanation;
+                    } else {
+                        return data.explanation;
+                    }
                 }
                 
                 // If fallback flag is set, use local analyzer
@@ -101,7 +108,10 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Fallback to smart local analysis
         console.log('📊 Using smart local code analyzer...');
-        return generateSmartExplanation(code, language);
+        const localExplanation = generateSmartExplanation(code, language);
+        
+        // Add header to show it's local analysis
+        return `📝 **شرح محلي (تحليل ذكي بدون إنترنت)**\n\n${localExplanation}`;
     }
 
     function generateSmartExplanation(code, language) {

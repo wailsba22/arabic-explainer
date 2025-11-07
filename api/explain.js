@@ -79,9 +79,14 @@ ${code}
                     if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
                         const explanation = data.candidates[0].content.parts[0].text;
                         console.log('✅ Success with Google Gemini! Length:', explanation.length);
+                        
+                        // Add header to show it's AI-generated
+                        const fullExplanation = `🤖 **شرح بواسطة الذكاء الاصطناعي (Google Gemini)**\n\n${explanation}`;
+                        
                         return res.status(200).json({ 
-                            explanation,
-                            model: 'Google Gemini 1.5 Flash'
+                            explanation: fullExplanation,
+                            model: 'Google Gemini 1.5 Flash',
+                            isAI: true
                         });
                     } else {
                         console.log('⚠️ Gemini returned data but no text found');
@@ -142,9 +147,13 @@ ${code}
                         }
 
                         if (explanation && explanation.trim().length > 20) {
+                            // Add header to show it's AI-generated
+                            const fullExplanation = `🤖 **شرح بواسطة الذكاء الاصطناعي (${model})**\n\n${explanation}`;
+                            
                             return res.status(200).json({ 
-                                explanation,
-                                model: model 
+                                explanation: fullExplanation,
+                                model: model,
+                                isAI: true
                             });
                         }
                     } else {
