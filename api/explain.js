@@ -1,5 +1,6 @@
 // Vercel Serverless Function - handles AI requests without CORS
 // Deploy this to Vercel and it will work automatically!
+// Updated: 2025-11-07
 
 export default async function handler(req, res) {
     // Enable CORS
