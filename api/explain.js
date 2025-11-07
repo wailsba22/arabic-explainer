@@ -36,50 +36,65 @@ ${code}
         const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
         const HF_API_KEY = process.env.HF_API_KEY;
         
+        console.log('🔍 Debug info:');
+        console.log('- GEMINI_API_KEY exists:', !!GEMINI_API_KEY);
+        console.log('- HF_API_KEY exists:', !!HF_API_KEY);
+        console.log('- Code length:', code.length);
+        console.log('- Language:', language);
+        
         // Try Google Gemini first (fastest and best for Arabic!)
         if (GEMINI_API_KEY) {
             try {
                 console.log('🤖 Trying Google Gemini...');
                 
-                const response = await fetch(
-                    `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`,
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            contents: [{
-                                parts: [{
-                                    text: prompt
-                                }]
-                            }],
-                            generationConfig: {
-                                temperature: 0.3,
-                                maxOutputTokens: 1000
-                            }
-                        })
-                    }
-                );
+                const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+                console.log('Gemini URL:', geminiUrl.replace(GEMINI_API_KEY, 'API_KEY_HIDDEN'));
+                
+                const response = await fetch(geminiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: prompt
+                            }]
+                        }],
+                        generationConfig: {
+                            temperature: 0.3,
+                            maxOutputTokens: 1000
+                        }
+                    })
+                });
 
+                console.log('Gemini response status:', response.status);
+                
                 if (response.ok) {
                     const data = await response.json();
+                    console.log('Gemini response data:', JSON.stringify(data).substring(0, 200));
                     
                     if (data.candidates && data.candidates[0]?.content?.parts?.[0]?.text) {
                         const explanation = data.candidates[0].content.parts[0].text;
-                        console.log('✅ Success with Google Gemini!');
+                        console.log('✅ Success with Google Gemini! Length:', explanation.length);
                         return res.status(200).json({ 
                             explanation,
                             model: 'Google Gemini 1.5 Flash'
                         });
+                    } else {
+                        console.log('⚠️ Gemini returned data but no text found');
                     }
                 } else {
-                    const errorData = await response.json();
-                    console.log('❌ Gemini failed:', errorData);
+                    const errorText = await response.text();
+                    console.log('❌ Gemini failed with status:', response.status);
+                    console.log('Error response:', errorText);
                 }
             } catch (error) {
                 console.error('Gemini error:', error.message);
+                console.error('Error stack:', error.stack);
             }
+        } else {
+            console.log('⚠️ GEMINI_API_KEY not found, skipping Gemini');
         }
         
         // Try Hugging Face as fallback
