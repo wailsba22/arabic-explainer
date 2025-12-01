@@ -1,4 +1,5 @@
 # Arabic Code Explainer 🌐
+Important: this project is still under development. I don’t have the time nor the required level to make this any sooner, but it’s still in my mind, so I hope I can complete it one day.
 
 شرح الأكواد البرمجية بالعربية - Explain code in Arabic using AI
 
